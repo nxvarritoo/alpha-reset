@@ -1,0 +1,2 @@
+import { ButtonLink } from '../components/ButtonLink'
+export function NotFound() { return <section className="flex min-h-[70vh] items-center bg-navy text-white"><div className="container-site text-center"><p className="font-display text-8xl text-teal">404</p><h1 className="mt-3 text-3xl font-black">Esta página no existe.</h1><div className="mt-8"><ButtonLink to="/">Volver al inicio</ButtonLink></div></div></section> }

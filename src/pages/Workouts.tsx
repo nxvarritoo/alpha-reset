@@ -1,0 +1,11 @@
+import { Clock, Gauge } from 'lucide-react'
+import { useState } from 'react'
+import { SectionHeading } from '../components/SectionHeading'
+import { workouts } from '../data/content'
+
+export function Workouts() {
+  const categories = ['Todos', ...new Set(workouts.map((item) => item.category))]
+  const [active, setActive] = useState('Todos')
+  const shown = active === 'Todos' ? workouts : workouts.filter((item) => item.category === active)
+  return <section className="section-pad bg-mist"><div className="container-site"><SectionHeading eyebrow="Biblioteca de entrenamiento" title="ENTRENA CON UN PORQUÉ." intro="Sesiones y recursos educativos para entender mejor cada parte del proceso. Los vídeos de Carlos se incorporarán cuando estén disponibles." /><div className="mt-10 flex gap-2 overflow-x-auto pb-3" aria-label="Filtrar entrenamientos">{categories.map((category) => <button key={category} onClick={() => setActive(category)} aria-pressed={active === category} className={`shrink-0 rounded-full px-5 py-2.5 text-sm font-bold transition ${active === category ? 'bg-navy text-white' : 'border border-navy/10 bg-white hover:border-teal'}`}>{category}</button>)}</div><div className="mt-7 grid gap-6 md:grid-cols-2 lg:grid-cols-3">{shown.map((item) => <article className="group overflow-hidden rounded-3xl bg-white shadow-soft" key={item.id}><div className="relative h-48 overflow-hidden" style={{ background: item.image }}><div className="absolute inset-0 opacity-20 [background-image:linear-gradient(45deg,transparent_40%,white_40%,white_42%,transparent_42%)]" /><span className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1 text-xs font-black text-navy">{item.category}</span></div><div className="p-6"><div className="flex gap-4 text-xs font-bold text-navy/45"><span className="flex items-center gap-1"><Gauge size={14} />{item.difficulty}</span><span className="flex items-center gap-1"><Clock size={14} />{item.duration}</span></div><h2 className="mt-4 text-2xl font-black">{item.title}</h2><p className="mt-3 leading-7 text-navy/60">{item.description}</p><p className="mt-5 text-xs font-bold text-teal">Contenido de ejemplo · Próximamente</p></div></article>)}</div></div></section>
+}

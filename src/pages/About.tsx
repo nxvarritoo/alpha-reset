@@ -1,0 +1,10 @@
+import { Quote } from 'lucide-react'
+import { SectionHeading } from '../components/SectionHeading'
+import { siteConfig } from '../config/site'
+
+export function About() {
+  return <section className="section-pad overflow-hidden bg-white"><div className="container-site grid items-center gap-14 lg:grid-cols-[.8fr_1.2fr]">
+    <div className="relative min-h-[620px] overflow-hidden rounded-[2.5rem] bg-navy"><div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(23,185,173,.14),transparent_55%)]" /><img src={siteConfig.images.carlos} alt="Retrato de Carlos Giral" className="relative mx-auto h-[650px] w-auto object-contain object-bottom" loading="lazy" /></div>
+    <div><SectionHeading eyebrow="La persona detrás del método" title="CONOCE A CARLOS." intro="Entrenar no debería sentirse como avanzar a ciegas. Mi objetivo es ayudarte a entender el proceso y encontrar una forma de entrenar que encaje contigo." /><div className="my-9 rounded-3xl bg-mist p-7"><Quote className="text-teal" /><blockquote className="mt-4 text-xl font-bold leading-8">“Quiero ser el entrenador que me habría gustado tener cuando empecé, y compartir contigo todo lo que me habría ayudado en ese camino.”</blockquote></div><div className="grid gap-5 text-sm leading-7 text-navy/65 sm:grid-cols-2"><div><h3 className="font-black text-navy">Mi filosofía</h3><p className="mt-2">Hacer sencillo lo importante: aprender, practicar con intención, ser constante y ajustar cuando sea necesario.</p></div><div><h3 className="font-black text-navy">Cómo quiero ayudarte</h3><p className="mt-2">Con claridad, cercanía y un plan que tenga en cuenta tu punto de partida, tu tiempo y tus objetivos.</p></div></div><p className="mt-8 rounded-xl border border-dashed border-navy/20 p-4 text-xs text-navy/50"><strong>Contenido provisional:</strong> esta presentación se sustituirá por la biografía personal de Carlos cuando esté disponible. No se han añadido titulaciones, certificaciones ni hechos no confirmados.</p></div>
+  </div></section>
+}

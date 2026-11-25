@@ -1,0 +1,18 @@
+import { Check, ChevronDown, Save } from 'lucide-react'
+import { useState } from 'react'
+import { DemoNotice } from '../../components/DemoNotice'
+import { demoRoutines, demoSessions } from '../../data/demo'
+import { useLocalStorage } from '../../hooks/useLocalStorage'
+import { STORAGE_KEYS } from '../../services/storage'
+import type { Session } from '../../types'
+
+export function RoutinePage() {
+  const [selected, setSelected] = useState(demoRoutines[0].id)
+  const routine = demoRoutines.find((item) => item.id === selected) ?? demoRoutines[0]
+  const [sessions, setSessions] = useLocalStorage<Session[]>(STORAGE_KEYS.sessions, demoSessions)
+  const [weights, setWeights] = useState<Record<string, number>>(Object.fromEntries(routine.exercises.map((e) => [e.id, e.weight])))
+  const [comment, setComment] = useState('')
+  const [saved, setSaved] = useState(false)
+  const complete = () => { const newSession: Session = { id: crypto.randomUUID(), date: new Date().toISOString().slice(0, 10), routine: routine.name, completed: true, exercises: routine.exercises.map((e) => ({ name: e.name, weight: weights[e.id] ?? e.weight, reps: `${e.sets}×${e.reps}` })), comment }; setSessions([newSession, ...sessions]); setSaved(true) }
+  return <div className="mx-auto max-w-6xl"><DemoNotice /><div className="mt-8 flex flex-wrap items-end justify-between gap-5"><div><p className="text-sm font-bold text-teal">Plan semanal</p><h1 className="mt-2 text-4xl font-black">Mi rutina</h1></div><label className="relative"><span className="sr-only">Elegir sesión</span><select className="input appearance-none pr-10" value={selected} onChange={(e) => { setSelected(e.target.value); setSaved(false) }}>{demoRoutines.map((r) => <option key={r.id} value={r.id}>{r.day} · {r.name}</option>)}</select><ChevronDown className="pointer-events-none absolute right-3 top-3.5" size={16} /></label></div><div className="mt-7 overflow-hidden rounded-3xl bg-white shadow-soft"><div className="bg-navy p-6 text-white"><p className="text-xs font-black uppercase tracking-widest text-teal">{routine.day} · {routine.duration}</p><h2 className="mt-2 text-2xl font-black">{routine.name}</h2></div><div className="divide-y divide-navy/10">{routine.exercises.map((exercise, index) => <div key={exercise.id} className="grid gap-4 p-6 lg:grid-cols-[2fr_.5fr_.6fr_.8fr_2fr]"><div><p className="text-xs font-black text-teal">0{index + 1}</p><h3 className="mt-1 font-black">{exercise.name}</h3></div><div><p className="text-xs text-navy/40">Series × reps</p><p className="mt-1 font-bold">{exercise.sets} × {exercise.reps}</p></div><div><p className="text-xs text-navy/40">Descanso</p><p className="mt-1 font-bold">{exercise.rest}</p></div><label className="text-xs text-navy/40">Peso (kg)<input type="number" min="0" step="0.5" className="input mt-1 py-2" value={weights[exercise.id] ?? exercise.weight} onChange={(e) => setWeights({ ...weights, [exercise.id]: Number(e.target.value) })} /></label><div><p className="text-xs text-navy/40">Nota de Carlos</p><p className="mt-1 text-sm leading-6 text-navy/65">{exercise.notes}</p></div></div>)}</div><div className="border-t border-navy/10 bg-mist p-6"><label className="text-sm font-bold">Comentario de la sesión<textarea className="input mt-2 min-h-20" value={comment} onChange={(e) => setComment(e.target.value)} placeholder="¿Cómo te has sentido?" /></label><button onClick={complete} className="btn-primary mt-4"><Save size={17} /> Guardar y completar</button>{saved && <p className="mt-3 flex items-center gap-2 text-sm font-bold text-teal"><Check size={17} /> Sesión guardada en este navegador</p>}</div></div></div>
+}
