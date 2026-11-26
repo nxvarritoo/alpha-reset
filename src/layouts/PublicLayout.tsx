@@ -25,9 +25,9 @@ export function PublicLayout() {
     <main id="contenido"><Outlet /></main>
     <footer className="border-t border-navy/10 bg-white py-14 text-navy">
       <div className="container-site grid gap-10 md:grid-cols-[1.2fr_.8fr_.8fr]">
-        <div><Logo className="h-14 w-52" /><p className="mt-5 max-w-md text-sm leading-6 text-navy/55">Entrenamiento con criterio, hábitos que encajan en tu vida y progreso que puedes entender.</p></div>
-        <div><p className="text-xs font-black uppercase tracking-widest text-teal">Explora</p><div className="mt-4 grid gap-2 text-sm text-navy/65"><Link to="/sobre-carlos">Sobre Carlos</Link><Link to="/metodo">Mi método</Link><Link to="/entrenamientos">Entrenamientos</Link></div></div>
-        <div><p className="text-xs font-black uppercase tracking-widest text-teal">Demo</p><div className="mt-4 grid gap-2 text-sm text-navy/65"><Link to="/mi-espacio">Mi espacio</Link><Link to="/demo/entrenador">Panel entrenador</Link><Link to="/contacto">Contacto</Link></div></div>
+        <div><Logo className="h-14 w-52" /><p className="mt-5 max-w-md text-sm leading-6 text-navy/55">Ayudo a personas normales a construir hábitos extraordinarios mediante entrenamiento, disciplina y constancia.</p></div>
+        <div><p className="text-xs font-black uppercase tracking-widest text-teal">Descubre</p><div className="mt-4 grid gap-2 text-sm text-navy/65"><Link to="/sobre-carlos">Mi historia</Link><Link to="/metodo">El método ALPHA RESET</Link><Link to="/entrenamientos">Entrenamiento</Link><Link to="/contacto">Contacto</Link></div></div>
+        <div><p className="text-xs font-black uppercase tracking-widest text-teal">Tu espacio</p><div className="mt-4 grid gap-2 text-sm text-navy/65"><Link to="/mi-espacio">Mi espacio</Link><Link to="/demo/entrenador">Panel entrenador</Link></div></div>
       </div>
       <div className="container-site mt-12 border-t border-navy/10 pt-6 text-xs text-navy/40">© {new Date().getFullYear()} ALPHA RESET · Carlos Giral</div>
     </footer>

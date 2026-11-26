@@ -1,8 +1,8 @@
 export const siteConfig = {
   brand: 'ALPHA RESET',
   trainer: 'Carlos Giral',
-  tagline: 'EL CAMBIO EMPIEZA CONTIGO.',
-  subtitle: 'Deja de entrenar sin rumbo. Aprende a entrenar, construye hábitos y descubre de lo que eres capaz.',
+  tagline: 'NUNCA ES TARDE PARA EMPEZAR DE NUEVO.',
+  subtitle: 'Entrena con propósito. Construye hábitos que duren. Conviértete en la persona que quieres ser.',
   images: { logo: `${import.meta.env.BASE_URL}images/logo-alpha-reset-transparent.png`, carlos: `${import.meta.env.BASE_URL}images/carlos-giral-transparent.png` },
   contact: { email: '', phone: '', instagram: '', youtube: '' },
   nav: [
